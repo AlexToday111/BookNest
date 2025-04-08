@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: booknest
+  datasource:
+    url: jdbc:postgresql://localhost:5432/booknest
+    username: booknest
+    password: booknest
+  data:
+    mongodb:
+      uri: mongodb://booknest:booknest@localhost:27017/booknest?authSource=admin
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui/index.html
+  api-docs:
+    path: /v3/api-docs
+
+booknest:
+  api:
+    title: BookNest API
+    version: 0.0.1
+    description: Personal library REST API with PostgreSQL and MongoDB.

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/${POSTGRES_DB:booknest}
+    username: ${POSTGRES_USER:booknest}
+    password: ${POSTGRES_PASSWORD:booknest}
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_INITDB_ROOT_USERNAME:booknest}:${MONGO_INITDB_ROOT_PASSWORD:booknest}@mongodb:27017/${MONGO_DATABASE:booknest}?authSource=admin
