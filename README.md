@@ -1,56 +1,70 @@
-# BookNest
+<h1 align="center">BookNest</h1>
 
-**BookNest** is a Java Spring Boot pet project: a REST API for managing a personal library, reading progress, notes, quotes, reviews, ratings and book recommendations.
+<p align="center">
+  REST API для управления личной библиотекой, прогрессом чтения, заметками, цитатами, отзывами, оценками и рекомендациями книг.
+</p>
 
-The project demonstrates backend development with **PostgreSQL**, **MongoDB**, **Flyway**, **Docker Compose**, **REST API**, **Strategy Pattern**, **JUnit 5** and **Testcontainers**.
+<p align="center">
+  Java 21 · Spring Boot 3 · PostgreSQL · MongoDB · Flyway · Docker Compose · JUnit 5 · Testcontainers
+</p>
 
-## Features
+<h2 align="center">О Проекте</h2>
 
-- manage users, authors and genres;
-- add, update, delete and search books;
-- track reading progress and reading status;
-- rate books and calculate average rating;
-- store notes, quotes, reviews and reading sessions in MongoDB;
-- get recommendations by genre, author, rating and reading history;
-- view reading statistics, genre distribution and monthly reading activity.
+**BookNest** — pet-проект на Java Spring Boot. Его цель — показать не просто CRUD, а аккуратное backend-приложение с разделением ответственности, двумя типами хранилищ и понятной бизнес-логикой.
 
-## Tech Stack
+Проект демонстрирует работу с REST API, PostgreSQL, MongoDB, Flyway, Docker Compose, Strategy Pattern, JUnit 5 и Testcontainers.
 
-| Category | Technology |
+<h2 align="center">Возможности</h2>
+
+- добавление пользователей, авторов и жанров;
+- добавление, обновление, удаление и поиск книг;
+- пагинация и фильтрация книг;
+- отслеживание прогресса чтения;
+- смена статуса книги;
+- выставление оценок и расчет средней оценки;
+- сохранение заметок, цитат, отзывов и сессий чтения в MongoDB;
+- получение рекомендаций по жанру, автору, рейтингу и истории чтения;
+- просмотр статистики чтения, распределения по жанрам и активности по месяцам.
+
+<h2 align="center">Технологический Стек</h2>
+
+| Категория | Технологии |
 |---|---|
-| Language | Java 21 |
+| Язык | Java 21 |
 | Framework | Spring Boot 3 |
 | API | REST |
-| SQL storage | PostgreSQL |
-| NoSQL storage | MongoDB |
-| Migrations | Flyway |
+| SQL-хранилище | PostgreSQL |
+| NoSQL-хранилище | MongoDB |
+| Миграции | Flyway |
 | ORM | Spring Data JPA / Hibernate |
 | MongoDB integration | Spring Data MongoDB |
 | Validation | Jakarta Validation |
-| API docs | Swagger / OpenAPI |
-| Testing | JUnit 5, Testcontainers |
-| Containers | Docker, Docker Compose |
-| Build | Maven |
+| Документация API | Swagger / OpenAPI |
+| Тестирование | JUnit 5, Testcontainers |
+| Контейнеризация | Docker, Docker Compose |
+| Сборка | Maven |
 
-## Why PostgreSQL And MongoDB
+<h2 align="center">PostgreSQL И MongoDB</h2>
 
-PostgreSQL stores structured data with strict relations:
+В проекте используются два хранилища, потому что данные имеют разную природу.
 
-- users;
-- authors;
-- genres;
-- books;
-- reading progress;
-- ratings.
+**PostgreSQL** хранит структурированные данные со строгими связями:
 
-MongoDB stores flexible user-generated documents:
+- пользователи;
+- авторы;
+- жанры;
+- книги;
+- прогресс чтения;
+- оценки.
 
-- notes;
-- quotes;
-- reviews;
-- reading sessions.
+**MongoDB** хранит гибкие пользовательские документы:
 
-Example note document:
+- заметки;
+- цитаты;
+- отзывы;
+- сессии чтения.
+
+Пример документа заметки:
 
 ```json
 {
@@ -58,14 +72,14 @@ Example note document:
   "userId": 1,
   "bookId": 42,
   "page": 117,
-  "text": "Interesting idea about habits and systems.",
+  "text": "Интересная мысль про привычки и системность.",
   "tags": ["habits", "psychology"],
   "mood": "thoughtful",
   "createdAt": "2025-04-14T12:30:00"
 }
 ```
 
-## Architecture
+<h2 align="center">Архитектура</h2>
 
 ```mermaid
 flowchart TD
@@ -85,22 +99,22 @@ flowchart TD
     Strategy --> HistoryStrategy[By Reading History Strategy]
 ```
 
-## Main Modules
+<h2 align="center">Основные Модули</h2>
 
-- `user` manages application users.
-- `author` manages book authors.
-- `genre` manages book genres.
-- `book` manages library books, search and pagination.
-- `progress` tracks reading status and current page.
-- `rating` stores user ratings and average book scores.
-- `note` stores MongoDB notes.
-- `quote` stores MongoDB quotes.
-- `review` stores MongoDB reviews.
-- `session` stores MongoDB reading sessions.
-- `recommendation` implements Strategy Pattern for recommendations.
-- `statistics` calculates reading statistics.
+- `user` — пользователи приложения.
+- `author` — авторы книг.
+- `genre` — жанры книг.
+- `book` — книги, поиск, фильтрация и пагинация.
+- `progress` — прогресс чтения и текущий статус книги.
+- `rating` — оценки пользователей и средняя оценка книги.
+- `note` — заметки по книгам в MongoDB.
+- `quote` — цитаты из книг в MongoDB.
+- `review` — отзывы на книги в MongoDB.
+- `session` — сессии чтения в MongoDB.
+- `recommendation` — рекомендации книг через Strategy Pattern.
+- `statistics` — статистика чтения пользователя.
 
-## REST API
+<h2 align="center">REST API</h2>
 
 ```http
 POST   /api/users
@@ -158,23 +172,23 @@ GET    /api/statistics/users/{userId}/genres
 GET    /api/statistics/users/{userId}/monthly
 ```
 
-## Local Run
+<h2 align="center">Запуск Локально</h2>
 
-Create environment file:
+Создать `.env`:
 
 ```bash
 cp .env.example .env
 ```
 
-Start the project:
+Запустить проект:
 
 ```bash
 docker compose up --build
 ```
 
-Local URLs:
+Локальные адреса:
 
-| Component | URL |
+| Компонент | URL |
 |---|---|
 | BookNest API | `http://localhost:8080` |
 | Swagger UI | `http://localhost:8080/swagger-ui/index.html` |
@@ -183,15 +197,15 @@ Local URLs:
 | Mongo Express | `http://localhost:8081` |
 | pgAdmin | `http://localhost:5050` |
 
-Start optional database tools:
+Запуск дополнительных инструментов для баз данных:
 
 ```bash
 docker compose --profile tools up --build
 ```
 
-## Examples
+<h2 align="center">Примеры Запросов</h2>
 
-Create a user:
+Создать пользователя:
 
 ```bash
 curl -X POST http://localhost:8080/api/users \
@@ -199,7 +213,7 @@ curl -X POST http://localhost:8080/api/users \
   -d '{"username":"alex","email":"alex@example.com"}'
 ```
 
-Create an author:
+Создать автора:
 
 ```bash
 curl -X POST http://localhost:8080/api/authors \
@@ -207,7 +221,7 @@ curl -X POST http://localhost:8080/api/authors \
   -d '{"name":"James Clear","bio":"Author of Atomic Habits."}'
 ```
 
-Create a genre:
+Создать жанр:
 
 ```bash
 curl -X POST http://localhost:8080/api/genres \
@@ -215,7 +229,7 @@ curl -X POST http://localhost:8080/api/genres \
   -d '{"name":"Self-development"}'
 ```
 
-Create a book:
+Создать книгу:
 
 ```bash
 curl -X POST http://localhost:8080/api/books \
@@ -230,7 +244,7 @@ curl -X POST http://localhost:8080/api/books \
   }'
 ```
 
-Update reading progress:
+Обновить прогресс чтения:
 
 ```bash
 curl -X POST http://localhost:8080/api/books/1/progress \
@@ -238,15 +252,15 @@ curl -X POST http://localhost:8080/api/books/1/progress \
   -d '{"userId":1,"status":"READING","currentPage":120}'
 ```
 
-Get recommendations:
+Получить рекомендации:
 
 ```bash
 curl "http://localhost:8080/api/recommendations?userId=1&type=BY_GENRE"
 ```
 
-## Configuration
+<h2 align="center">Конфигурация</h2>
 
-Main configuration lives in `src/main/resources/application.yml`.
+Основные настройки находятся в `src/main/resources/application.yml`.
 
 ```yaml
 spring:
@@ -266,28 +280,29 @@ spring:
     locations: classpath:db/migration
 ```
 
-## Testing
+<h2 align="center">Тестирование</h2>
 
-Run tests:
+Запуск тестов:
 
 ```bash
 mvn test
 ```
 
-Build package:
+Сборка проекта:
 
 ```bash
 mvn clean package
 ```
 
-The project contains focused unit tests for service logic and recommendation strategy selection. Integration test classes document PostgreSQL and MongoDB Testcontainers scenarios.
+В проекте есть unit-тесты для сервисной логики и выбора стратегии рекомендаций. Integration test classes описывают сценарии с PostgreSQL и MongoDB Testcontainers.
 
-## Implementation Notes
+<h2 align="center">Особенности Реализации</h2>
 
-- Business logic is kept out of controllers.
-- JPA entities and MongoDB documents are not returned directly from the API.
-- DTOs and mapper classes separate API contracts from storage models.
-- PostgreSQL and MongoDB are used for different data shapes.
-- Flyway owns the SQL schema; Hibernate validates it.
-- API errors use one response format.
-- Recommendations use Strategy Pattern and a strategy registry.
+- бизнес-логика не хранится в контроллерах;
+- JPA Entity и MongoDB Document не возвращаются напрямую из API;
+- DTO и mapper-слой отделяют API-контракты от моделей хранения;
+- PostgreSQL и MongoDB используются для разных типов данных;
+- Flyway управляет SQL-схемой;
+- Hibernate только валидирует схему;
+- ошибки API возвращаются в едином формате;
+- рекомендации реализованы через Strategy Pattern и registry стратегий.
